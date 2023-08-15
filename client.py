@@ -9,7 +9,7 @@ epsilon = 0.1
 
 #00 = norte, 01 = leste, 10 = sul, 11 = oeste
 
-for i in range(1000):
+for i in range(100):
     acao = 'jump'
     estado, recompensa = cn.get_state_reward(socket, acao)
     print(estado)
@@ -47,13 +47,13 @@ for i in range(1000):
         #precisamos atualizar o valor de acordo com a acao escolhida
 
         if acao == "left":
-            novo_valor = aprendizado * (recompensa + gamma * max(float(valorestado_split[0]), float(valorestado_split[1]), float(valorestado_split[2])) - float(valorestado_split[0]))
+            novo_valor = aprendizado * ((recompensa + gamma * max(float(valorestado_split[0]), float(valorestado_split[1]), float(valorestado_split[2])) - float(valorestado_split[0])))
             atual = str(float(novo_valor) + float(valorestado_split[0])) + " " + valorestado_split[1] + " " + valorestado_split[2]
         elif acao == "jump":
-            novo_valor = aprendizado * (recompensa + gamma * max(float(valorestado_split[0]), float(valorestado_split[1]), float(valorestado_split[2])) - float(valorestado_split[1]))
+            novo_valor = aprendizado * ((recompensa + gamma * max(float(valorestado_split[0]), float(valorestado_split[1]), float(valorestado_split[2])) - float(valorestado_split[1])))
             atual = valorestado_split[0] + " " + str(float(novo_valor) + float(valorestado_split[1])) + " " + valorestado_split[2]
         elif acao == "right":
-            novo_valor = aprendizado * (recompensa + gamma * max(float(valorestado_split[0]), float(valorestado_split[1]), float(valorestado_split[2])) - float(valorestado_split[2]))
+            novo_valor = aprendizado * ((recompensa + gamma * max(float(valorestado_split[0]), float(valorestado_split[1]), float(valorestado_split[2])) - float(valorestado_split[2])))
             atual = valorestado_split[0]+ " " + valorestado_split[1] + " " + str(float(novo_valor) + float(valorestado_split[2])) + "\n"
             atual = atual.replace(r"\n", "\n")
 
